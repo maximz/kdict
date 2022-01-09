@@ -9,3 +9,6 @@ import logging
 from logging import NullHandler
 
 logging.getLogger(__name__).addHandler(NullHandler())
+
+# Make the ndict class importable via the module, so users can write "from ndict import ndict" instead of "from ndict.ndict import ndict"
+from .ndict import ndict
