@@ -1,4 +1,4 @@
-ndict package
+kdict package
 =================
 
 Submodules
@@ -7,7 +7,7 @@ Submodules
 Module contents
 ---------------
 
-.. automodule:: ndict
+.. automodule:: kdict
     :members:
     :undoc-members:
     :show-inheritance:

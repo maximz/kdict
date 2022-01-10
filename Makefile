@@ -54,15 +54,15 @@ test: ## run tests quickly with the default Python
 	pytest
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source ndict -m pytest
+	coverage run --source kdict -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/ndict.rst
+	rm -f docs/kdict.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ ndict
+	sphinx-apidoc -o docs/ kdict
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

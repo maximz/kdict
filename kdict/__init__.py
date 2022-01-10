@@ -1,4 +1,4 @@
-"""Ndict."""
+"""Kdict."""
 
 __author__ = """Maxim Zaslavsky"""
 __email__ = "maxim@maximz.com"
@@ -10,5 +10,5 @@ from logging import NullHandler
 
 logging.getLogger(__name__).addHandler(NullHandler())
 
-# Make the ndict class importable via the module, so users can write "from ndict import ndict" instead of "from ndict.ndict import ndict"
-from .ndict import ndict
+# Make the kdict class importable via the module, so users can write "from kdict import kdict" instead of "from kdict.kdict import kdict"
+from .kdict import kdict

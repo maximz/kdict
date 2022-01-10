@@ -1,4 +1,4 @@
-from ndict.helpers import _is_iterable_but_not_string
+from kdict.helpers import _is_iterable_but_not_string
 
 
 def test_is_iterable_but_not_string():

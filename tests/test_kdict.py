@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 import pytest
-from ndict import ndict
+from kdict import kdict
 
 
 def test_main():
-    d = ndict()
+    d = kdict()
     for fold_id in range(3):
         for fold_label in ["train", "test"]:
             for model_name in ["randomforest", "svm"]:
@@ -32,7 +32,7 @@ def test_main():
 
 
 def test_list_get():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 5, "train"] = object()
     d[1, 10, "train"] = object()
@@ -45,7 +45,7 @@ def test_list_and_slice_together_get():
     # KeyError: 'All slices must have same length'
     # TODO: we should treat ":" slice as a "get all" / "no filters for this column"
     # right now this is failing because we interpret this as: [1, [5, 10], ['train', 'train', 'train', 'test']]
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 5, "train"] = object()
     d[1, 10, "train"] = object()
@@ -54,7 +54,7 @@ def test_list_and_slice_together_get():
 
 
 def test_int_slice_against_int_column():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 5, "train"] = object()
     d[1, 10, "train"] = object()
@@ -64,7 +64,7 @@ def test_int_slice_against_int_column():
 @pytest.mark.xfail(raises=TypeError)
 def test_int_slice_against_str_column():
     # TypeError: '>=' not supported between instances of 'str' and 'int'
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 2, "test"] = object()
     assert len(d[1, 2, 3:6]) == 0
@@ -73,21 +73,21 @@ def test_int_slice_against_str_column():
 @pytest.mark.xfail(raises=TypeError)
 def test_int_slice_against_mixed_column():
     # TypeError: '>=' not supported between instances of 'str' and 'int'
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 2, 5] = object()
     assert len(d[1, 2, 3:6]) == 0
 
 
 def test_none_slice_against_str_column():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 2, "test"] = object()
     assert len(d[1, 2, :]) == 2
 
 
 def test_none_slice_against_str_column_with_nones():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 2, "test"] = object()
     d[1, 2, None] = object()
@@ -95,7 +95,7 @@ def test_none_slice_against_str_column_with_nones():
 
 
 def test_none_slice_against_int_column():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 5, "train"] = object()
     d[1, 10, "train"] = object()
@@ -103,7 +103,7 @@ def test_none_slice_against_int_column():
 
 
 def test_none_slice_against_int_column_with_nones():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 5, "train"] = object()
     d[1, 10, "train"] = object()
@@ -112,14 +112,14 @@ def test_none_slice_against_int_column_with_nones():
 
 
 def test_none_slice_against_mixed_column():
-    d = ndict()
+    d = kdict()
     d[1, 2, "train"] = object()
     d[1, 2, 5] = object()
     assert len(d[1, 2, :]) == 2
 
 
 def test_update():
-    a = ndict()
+    a = kdict()
     a[1, 2, 3] = "test"
     assert len(a) == 1
     a.update({(1, 2, 4): "test"})
@@ -129,7 +129,7 @@ def test_update():
 @pytest.mark.xfail(raises=KeyError)
 def test_key_length_enforced_in_update():
     # KeyError: ((1, 2), 'wrong key length')
-    a = ndict()
+    a = kdict()
     a[1, 2, 3] = "test"
     a.update({(1, 2, 4): "test"})
     assert len(a) == 2
@@ -139,7 +139,7 @@ def test_key_length_enforced_in_update():
 @pytest.mark.xfail(raises=KeyError)
 def test_key_length_enforced_in_get():
     # KeyError: ('1', 'wrong key length')
-    a = ndict()
+    a = kdict()
     a[1, 2, 3] = "test"
     a["1"]
 
@@ -147,11 +147,11 @@ def test_key_length_enforced_in_get():
 @pytest.mark.xfail(raises=ValueError)
 def test_key_length_enforced_in_constructor():
     # ValueError: All keys must have same length
-    ndict({("a", 2): 5, "b": 6})
+    kdict({("a", 2): 5, "b": 6})
 
 
 def test_constructor():
-    ndict({("a", 2): 5})
-    ndict(a=5)
-    ndict({("a", 2): 5, ("b", 7): 6})
-    ndict({"a": 2}, b=7)
+    kdict({("a", 2): 5})
+    kdict(a=5)
+    kdict({("a", 2): 5, ("b", 7): 6})
+    kdict({"a": 2}, b=7)

@@ -1,7 +1,7 @@
-ndict
+kdict
 =========
 
 .. toctree::
    :maxdepth: 4
 
-   ndict
+   kdict

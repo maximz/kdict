@@ -23,9 +23,9 @@ test_requirements = [
 setup(
     author="Maxim Zaslavsky",
     author_email="maxim@maximz.com",
-    name="ndict",
-    description="Ndict",
-    packages=find_packages(include=["ndict", "ndict.*"]),
+    name="kdict",
+    description="Kdict",
+    packages=find_packages(include=["kdict", "kdict.*"]),
     python_requires=">=3.7",
     version="0.0.1",
     classifiers=[
@@ -46,6 +46,6 @@ setup(
     setup_requires=setup_requirements,
     test_suite="tests",
     tests_require=test_requirements,
-    url="https://github.com/maximz/ndict",
+    url="https://github.com/maximz/kdict",
     zip_safe=False,
 )

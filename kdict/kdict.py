@@ -2,7 +2,7 @@ from collections import UserDict, OrderedDict
 from .helpers import _is_iterable_but_not_string, _convert_slice_to_list
 
 
-class ndict(UserDict):
+class kdict(UserDict):
     """
     n-dimensional dict
     """

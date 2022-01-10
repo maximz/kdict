@@ -1,4 +1,4 @@
-ndict documentation table of contents
+kdict documentation table of contents
 ======================================
 
 .. toctree::
@@ -6,5 +6,5 @@ ndict documentation table of contents
    :caption: Contents:
 
    Overview <index>
-   API <ndict>
+   API <kdict>
    changelog
