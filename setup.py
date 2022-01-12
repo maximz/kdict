@@ -27,7 +27,7 @@ setup(
     description="Kdict",
     packages=find_packages(include=["kdict", "kdict.*"]),
     python_requires=">=3.7",
-    version="0.0.1",
+    version="0.1.0",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",

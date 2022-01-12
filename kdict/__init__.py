@@ -2,7 +2,7 @@
 
 __author__ = """Maxim Zaslavsky"""
 __email__ = "maxim@maximz.com"
-__version__ = "0.0.1"
+__version__ = "__version__ = '0.1.0'"
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
