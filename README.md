@@ -1,4 +1,4 @@
-# Kdict
+# Kdict: dict with multi-dimensional, sliceable keys
 
 [![](https://img.shields.io/pypi/v/kdict.svg)](https://pypi.python.org/pypi/kdict)
 [![CI](https://github.com/maximz/kdict/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/maximz/kdict/actions/workflows/ci.yaml)
@@ -7,10 +7,13 @@
 
 _kdict_ is like _dict_ for multi-dimensional keys. With _kdict_, you can easily filter and slice your dictionary by key dimensions.
 
-Suppose you're evaluating several machine learning models on three cross validation folds, each with a training set and a test set. Before _kdict_, you might store evaluation scores in a nested dictionary. But that's cumbersome and error-prone. Here's what it would take to get the mean accuracy for a particular model across all folds:
+**Example: machine learning model evaluation.** Suppose you're evaluating several models on three cross validation folds, each with a training set and a test set.
+
+Before _kdict_, you might store evaluation scores in a nested dictionary. But that's cumbersome and error-prone. Here's what it would take to get the mean accuracy for a particular model across all folds:
 
 ```python
-# Without kdict, need to write iterators like this:
+# To access inner nested data without kdict, you'd need to write iterators like this:
+import numpy as np
 np.mean(
     [
         data[fold_id][fold_label]["lasso"]
@@ -20,29 +23,38 @@ np.mean(
 )
 ```
 
-_kdict_ makes storing and accessing this type of data a breeze:
+**_kdict_ makes storing and accessing this type of data a breeze. No more nesting:**
 
 ```python
-import numpy as np
-from kdict import kdict
-
-# Store data in a kdict
-data = kdict()
-for fold_id in range(3):
-    for fold_label in ['train', 'test']:
-        for model_name in ['lasso', 'randomforest']:
-            data[fold_id, fold_label, model_name] = get_model_score(
-                fold_id,
-                fold_label,
-                model_name
-            )
+# Store data in a three-dimensional kdict.
+# Dimensions: fold ID, fold label, model name
+data = kdict(...)
 
 # Slice the kdict to get lasso model's mean accuracy across all folds:
 # data[:, :, 'lasso'] is a subset of the full dictionary
 np.mean(list(data[:, :, 'lasso'].values()))
 ```
 
-In this example, `data` is a three-dimensional _kdict_ that you can slice along any dimension.
+In this example, `data` is a three-dimensional _kdict_ that you can slice along any dimension. So how did we make this kdict?
+
+```python
+from kdict import kdict
+data = kdict() # make a blank kdict
+for fold_id in range(3):
+    for fold_label in ['train', 'test']:
+        for model_name in ['lasso', 'randomforest']:
+            # add an entry for each fold ID, fold label, and model name
+            data[fold_id, fold_label, model_name] = get_model_score(
+                fold_id,
+                fold_label,
+                model_name
+            )
+```
+
+The syntax, in a nutshell:
+
+- Read or write a single element by accessing `[key_dimension_1, key_dimension_2]` and so on.
+- Or get a subset of the dictionary by slicing, e.g. `[:, key_dimension_2]`.
 
 ## Installation
 

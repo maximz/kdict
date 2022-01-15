@@ -10,7 +10,7 @@ from .helpers import _is_iterable_but_not_string, _convert_slice_to_list
 
 class kdict(UserDict):
     """
-    n-dimensional dict
+    A dict with k-dimensional keys, sliceable along any of those dimensions.
     """
 
     # Why we subclass UserDict instead of dict: https://stackoverflow.com/a/7148602/130164 and https://stackoverflow.com/a/64450669/130164 and similar
