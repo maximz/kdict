@@ -1,5 +1,5 @@
 kdict
-=========
+=====
 
 .. toctree::
    :maxdepth: 4
