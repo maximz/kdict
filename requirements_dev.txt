@@ -12,5 +12,5 @@ recommonmark>=0.6.0
 requests
 sphinx>=4
 twine==1.14.0
-watchdog==0.9.0
+watchdog==2.1.7
 wheel>=0.33.6
