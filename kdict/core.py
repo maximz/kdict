@@ -5,10 +5,15 @@ from _collections_abc import (
     dict_values,
     dict_items,
 )  # https://github.com/python/typeshed/pull/6888
+import typing
 from .helpers import _is_iterable_but_not_string, _convert_slice_to_list
 
+# Generic type vars to accept user's types
+_KT = typing.TypeVar("_KT")  #  key type
+_VT = typing.TypeVar("_VT")  #  value type
 
-class kdict(UserDict):
+# Allow typing by subclassing MutableMapping: https://stackoverflow.com/a/64268475/130164 and https://stackoverflow.com/a/64268356/130164
+class kdict(UserDict, typing.MutableMapping[_KT, _VT]):
     """
     A dict with k-dimensional keys, sliceable along any of those dimensions.
     """

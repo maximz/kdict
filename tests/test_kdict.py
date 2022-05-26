@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import pytest
+import typing
 from kdict import kdict
 
 
@@ -235,3 +236,16 @@ def test_looks_like_a_dict():
     assert type(d.keys()) == type(d.data.keys())
     assert type(d.values()) == type(d.data.values())
     assert type(d.items()) == type(d.data.items())
+
+
+def test_allows_typing():
+    # Define in-line:
+    d = kdict[typing.Tuple[int, str], object]()
+    d[0, "train"] = object()
+    d[1, "train"] = object()
+
+    # Or define a specific type:
+    CustomKdict = kdict[typing.Tuple[int, str], object]
+    d = CustomKdict()
+    d[0, "train"] = object()
+    d[1, "train"] = object()
