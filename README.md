@@ -102,6 +102,25 @@ A _kdict_ behaves just like a _dict_, except all keys must have the same number 
 
 To get a raw _dict_ back, call `data.eject()`.
 
+### Type hints
+
+You can specify types for a kdict inline. Suppose your keys are `int, str` and your values are `object`:
+
+```python
+import typing
+d = kdict[typing.Tuple[int, str], object]()
+d[0, "train"] = object()
+d[1, "train"] = object()
+```
+
+Or you can create derived types:
+
+```python
+CustomKdict = kdict[typing.Tuple[int, str], object]
+d = CustomKdict()
+d[0, "train"] = object()
+d[1, "train"] = object()
+```
 
 ## Development
 
